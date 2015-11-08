@@ -1,1 +1,1 @@
-include ':app', ':moduleone', ':modulesec'
+include ':app', ':grass', ':honey'

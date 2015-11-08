@@ -1,0 +1,17 @@
+def loadfromLocalProperties() {
+    Properties properties = new Properties()
+    File file = new File(rootDir.getAbsolutePath() + "/loacl.properties")
+    properties.load(file.newDataInputStream())
+    gradle.ext.dir = properties.getProperty('sdk.dir')
+    println gradle.dir
+}
+
+def getVersionName() {
+    def xmlFile = project.file("AndroidMainfest.xml")
+    def rootManifest = new XmlSlurper().parse(xmlFile)
+    return rootManifest['@android:versionName']
+}
+
+ext {
+    getVersionName = this.&getVersionName
+}
